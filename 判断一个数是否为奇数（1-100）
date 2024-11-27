@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main()
+{
+	int i;
+	for(i=1;i<101;i++)
+	{
+		if(i%2)
+		  printf("%d为奇数\n",i);
+		else
+		  printf("%d为偶数\n",i);
+	}
+	return 0;
+}
