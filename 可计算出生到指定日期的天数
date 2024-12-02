@@ -1,13 +1,13 @@
 #include<stdio.h>
 
-		//ÅĞ¶ÏÈòÄê£¬²¢·µ»Ø0»ò1¡£ÖµÎª0²»ÊÇÈòÄê£¬ÖµÎª1ÊÇÈòÄê 
+		//åˆ¤æ–­é—°å¹´ï¼Œå¹¶è¿”å›0æˆ–1ã€‚å€¼ä¸º0ä¸æ˜¯é—°å¹´ï¼Œå€¼ä¸º1æ˜¯é—°å¹´ 
 
 	int is_no_leap_year(int year)
 	{
 		return ((year%4==0&&year%100!=0)||year%400==0);
 	}
 	
-		//ÈòÄê¶şÔÂÎª29Ìì
+		//é—°å¹´äºŒæœˆä¸º29å¤©
 	
 	int Day_In_Month(int year,int month)
 	{
@@ -20,12 +20,12 @@ int main()
 {
 	int startyear,nowyear,startmonth,nowmonth,startday,nowday;
 	int	i,year_day_between,day_day_left,month_day_till,all_day,month_day_left,day_day_till;
-	int year[150];		//year[]ÊÇ´æÄêµÄµØ·½£¬150Ôò³öÉúÈÕÆÚµ½½ñÈÕÈÕÆÚ²»ÄÜ³¬¹ı150Äê 
-	int tempyear = startyear;		//tempyearÎªÁÙÊ±±äÁ¿ 
+	int year[150];		//year[]æ˜¯å­˜å¹´çš„åœ°æ–¹ï¼Œ150åˆ™å‡ºç”Ÿæ—¥æœŸåˆ°ä»Šæ—¥æ—¥æœŸä¸èƒ½è¶…è¿‡150å¹´ 
+	int tempyear = startyear;		//tempyearä¸ºä¸´æ—¶å˜é‡ 
 	
-	printf("³öÉúÈÕÆÚÎª:");
+	printf("å‡ºç”Ÿæ—¥æœŸä¸º:");
 	scanf("%d-%d-%d",&startyear,&startmonth,&startday);
-	printf("½ñÈÕÈÕÆÚÎª:");
+	printf("ä»Šæ—¥æ—¥æœŸä¸º:");
 	scanf("%d-%d-%d",&nowyear,&nowmonth,&nowday);
 	
 	if (startyear == nowyear && startmonth == nowmonth)
@@ -61,7 +61,7 @@ int main()
 				year_day_between += year[i];	
 			}
 		
-			// ¼ÆËã³öÉúÈÕÆÚËùÔÚÄê·İÊ£ÓàÌìÊı
+			// è®¡ç®—å‡ºç”Ÿæ—¥æœŸæ‰€åœ¨å¹´ä»½å‰©ä½™å¤©æ•°
 		
 				day_day_left=Day_In_Month(startyear,startmonth)-startday;
 				for(i = startmonth;i < 12;i++)
@@ -69,20 +69,20 @@ int main()
 					month_day_left += Day_In_Month(startyear, i);
 				}
 	
-				//¼ÆËãµ±Ç°Äê·İÒÑ¹ıÌìÊı
+				//è®¡ç®—å½“å‰å¹´ä»½å·²è¿‡å¤©æ•°
 				
 				for(i = 1;i < nowmonth;i++)
 				{
 					month_day_till += Day_In_Month(nowyear, i);
 				}
 	
-				//¼ÆËã×ÜºÍ 
+				//è®¡ç®—æ€»å’Œ 
 		
 			day_day_till = nowday-1;
 			all_day = year_day_between + month_day_left + month_day_till + day_day_left + day_day_till;
 		}
 	}
-		printf("³öÉúÖÁ½ñµÄÌìÊı:%d",all_day);
+		printf("å‡ºç”Ÿè‡³ä»Šçš„å¤©æ•°:%d",all_day);
 		return 0;
 }
 
