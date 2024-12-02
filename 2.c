@@ -1,0 +1,88 @@
+#include<stdio.h>
+
+		//判断闰年，并返回0或1。值为0不是闰年，值为1是闰年 
+
+	int is_no_leap_year(int year)
+	{
+		return ((year%4==0&&year%100!=0)||year%400==0);
+	}
+	
+		//闰年二月为29天
+	
+	int Day_In_Month(int year,int month)
+	{
+		int February_day = 28 + is_no_leap_year(year);
+		int day[12] = {31,February_day,31,30,31,30,31,31,30,31,30};
+		return (day[month-1]);
+	}
+	
+int main()
+{
+	int startyear,nowyear,startmonth,nowmonth,startday,nowday;
+	int	i,year_day_between,day_day_left,month_day_till,all_day,month_day_left,day_day_till;
+	int year[150];		//year[]是存年的地方，150则出生日期到今日日期不能超过150年 
+	int tempyear = startyear;		//tempyear为临时变量 
+	
+	printf("出生日期为:");
+	scanf("%d-%d-%d",&startyear,&startmonth,&startday);
+	printf("今日日期为:");
+	scanf("%d-%d-%d",&nowyear,&nowmonth,&nowday);
+	
+	if (startyear == nowyear && startmonth == nowmonth)
+    {
+    	all_day = nowday - startday + 1;
+	}
+	else
+	{
+		if(startyear == nowyear)
+		{
+			day_day_left = Day_In_Month(startyear, startmonth) - startday;
+			
+			for (i = 1; i < nowmonth; i++)
+	    {
+	        month_day_till += Day_In_Month(nowyear, i);
+	    }
+	
+	    all_day = day_day_left + month_day_till;
+		}
+		else
+		{	
+			for(i = 0;i < nowyear-startyear-1;i++)
+			{
+				++tempyear;
+				if(is_no_leap_year(tempyear))
+				{
+					year[i] = 366;
+				}
+				else
+				{
+					year[i] = 365;
+				}
+				year_day_between += year[i];	
+			}
+		
+			// 计算出生日期所在年份剩余天数
+		
+				day_day_left=Day_In_Month(startyear,startmonth)-startday;
+				for(i = startmonth;i < 12;i++)
+				{
+					month_day_left += Day_In_Month(startyear, i);
+				}
+	
+				//计算当前年份已过天数
+				
+				for(i = 1;i < nowmonth;i++)
+				{
+					month_day_till += Day_In_Month(nowyear, i);
+				}
+	
+				//计算总和 
+		
+			day_day_till = nowday-1;
+			all_day = year_day_between + month_day_left + month_day_till + day_day_left + day_day_till;
+		}
+	}
+		printf("出生至今的天数:%d",all_day);
+		return 0;
+}
+
